@@ -5,6 +5,12 @@
       "bundler": "metro"
     },
     "name": "autofeeder-front",
-    "slug": "autofeeder-front"
+    "slug": "autofeeder",
+    "extra": {
+      "eas": {
+        "projectId": "a0b8a77b-570b-41be-86c2-b76121c96406"
+      }
+    },
+    "owner": "dong_gyu"
   }
 }
