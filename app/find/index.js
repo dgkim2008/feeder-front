@@ -20,11 +20,6 @@ export default function Page() {
     return (
         <View style={styles.main}>
             <View style={styles.submain1}>
-                <View style={styles.titlebox}>
-                    <View style={styles.border}>
-                        <Text style={styles.title}>멍냥 먹창고</Text>
-                    </View>
-                </View>
                 <View style={styles.bluetoothbox}>
                     <Text style={styles.bluetooth}>{bluetooth===false? '블루투스를 연결해주세요': '블루투스가 연결되었습니다'}</Text>
                 </View>
@@ -47,7 +42,7 @@ export default function Page() {
 }
 const styles = StyleSheet.create({
     submain1:{
-        height:300,
+        height:200,
         flexDirection:'column',
         justifyContent:"space-between"
     },
@@ -55,12 +50,6 @@ const styles = StyleSheet.create({
         height:150,
         flexDirection:'column',
         justifyContent:"space-between"
-    },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 40,
-        color: 'black'
-        
     },
     bluetooth: {
         color: 'red',
@@ -72,19 +61,11 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 20,
     },
-    titlebox: {
-        width: 215,
-        display: 'flex',
-        alignItems: 'center',
-    },
     bluetoothbox: {
         paddingLeft: 15
     }, 
     choicebox: {
         paddingLeft: 15
-    },
-    border: {
-        borderBottomWidth: 7,
     },
     feederbox: {
         borderWidth: 1.5,

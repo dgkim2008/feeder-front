@@ -12,33 +12,36 @@ export default function Layout() {
                 <Link href={"/main"} style={styles.backtext}>BACK</Link>
             </AntDesign>
         }
-        {/*
+        
+        </View>
+        {
             (path !== '/') &&
             <View style={styles.titlebox}>
                 <View style={styles.border}>
                     <Text style={styles.title}>멍냥 먹창고</Text>
                 </View>
             </View>
-            */
         }
-        </View>
         <Slot />
     </View>
 }
 
 const styles = StyleSheet.create({
     container:{
+        marginTop: 5,
+        marginRight: 7,
         flex:1
     },
     backtext: {
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 16,   
+        
     },
     back: {
         flexDirection: "row-reverse",
         height:80,
         alignItems:'center',
-        paddingRight:30
+        paddingTop: 20
     },
     title: {
         fontWeight: 'bold',
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
     },
     titlebox: {
         width: 215,
-        display: 'flex',
+        height: 150,
         alignItems: 'center',
     },
     border: {

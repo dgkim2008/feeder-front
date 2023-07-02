@@ -4,6 +4,7 @@ import {Link} from 'expo-router'
 export default function Page() {
     return (
         <View style={styles.main}>
+
         </View>
     );
 }
