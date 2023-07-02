@@ -1,5 +1,4 @@
-import { StyleSheet, Text, View, Button ,TextInput} from "react-native";
-import {Link} from 'expo-router'
+import { StyleSheet, Text, View, Button ,TextInput} from "react-native";                                    
 
 export default function Page() {
     return (
@@ -8,32 +7,48 @@ export default function Page() {
                 <View style={styles.center}>
                     <Text>반려동물:</Text>
                 </View>
-                <Button title="고양이" style={styles.buttoncolor}></Button>
+                <Button title="고양이"></Button>
                 <Button title="강아지"></Button>
             </View>
             <View style={styles.box}>
-                <TextInput style={styles.input}></TextInput>
+                <TextInput style={styles.input} placeholder="반려동물의 이름을 입력해주세요" placeholderTextColor="black"></TextInput>
             </View>
             <View style={styles.box}>
-                
+                <TextInput style={styles.input} placeholder="생년월일 ex) 2023-01-01" placeholderTextColor="black"></TextInput>
+            </View>
+            <View style={styles.button}>
+                <View style={styles.center}>
+                        <Text>성별:</Text>
+                </View>
+                <Button title="남"></Button>                
+                <Button title="여"></Button>
+                </View>
+            <View style={styles.box}>
+                <TextInput style={styles.input} placeholder="몸무게 ex) 2.3kg" placeholderTextColor="black"></TextInput>
+            </View>
+            <View style={styles.button}>
+                <View style={styles.center}>
+                        <Text>중성화:</Text>
+                </View>
+                <Button title="했어요"></Button>
+                <Button title="안했어요"></Button>
             </View>
             <View style={styles.box}>
-                
+                <TextInput style={styles.input} placeholder="사료 KG당 칼로리 ex) 110kcal" placeholderTextColor="black"></TextInput>
             </View>
-            <View style={styles.box}>
-            
+            <View style={styles.button}>
+                <View style={styles.center}>
+                        <Text>비만여부:</Text>
+                </View>
+                <Button title="O"></Button>
+                <Button title="X"></Button>
             </View>
-            <View style={styles.box}>
-                
-            </View>
-            <View style={styles.box}>
-                
-            </View>
-            <View style={styles.box}>
-            
-            </View>
-            <View style={styles.boxlast}>
-                
+            <View style={styles.button}>
+                <View style={styles.center}>
+                        <Text>저체중여부:</Text>
+                </View>
+                <Button title="O"></Button>
+                <Button title="X"></Button>
             </View>
         </View>
     );
@@ -76,8 +91,5 @@ const styles = StyleSheet.create({
         width: 300,
         paddingBottom: 15,
         flex: 1
-    }, 
-    input: {
-        placeholder: '반려동물의 이름을 입력해주세요'
     }
 })
