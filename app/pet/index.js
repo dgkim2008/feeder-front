@@ -7,7 +7,7 @@ export default function Page() {
                 <View style={styles.center}>
                     <Text>반려동물:</Text>
                 </View>
-                <Button title="고양이"></Button>
+                <Button title="고양이" onPress={() => console.log(this)}></Button>
                 <Button title="강아지"></Button>
             </View>
             <View style={styles.box}>
@@ -30,7 +30,7 @@ export default function Page() {
                 <View style={styles.center}>
                         <Text>중성화:</Text>
                 </View>
-                <Button title="했어요"></Button>
+                <Button title="했어요" color= 'red'></Button>
                 <Button title="안했어요"></Button>
             </View>
             <View style={styles.box}>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingBottom: 15,
         paddingTop: 15,
-        borderBottomWidth: 1,
+        //borderBottomWidth: 1,
     },
     center: {
         display:'flex',
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'center',
         width: 300,
-        borderBottomWidth: 1,
+        //borderBottomWidth: 1,
         paddingBottom: 15,
         flex: 1
     },
@@ -91,5 +91,9 @@ const styles = StyleSheet.create({
         width: 300,
         paddingBottom: 15,
         flex: 1
+    }, 
+    select: {
+        color: 'red',
+        fontWeight: 'bold'
     }
 })
