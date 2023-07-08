@@ -38,9 +38,9 @@ export default function Page() {
                     <Button title="여아" onPress={() => setInfo({...info, gen:"F"})} color={info.gen === 'F' ? ACTIVE : DEACTIVE}></Button>
                     </View>
                 <View style={styles.box}>
-                    <TextInput style={styles.input} onChangeText={weight => setInfo({...info, weight})} placeholder="몸무게 ex) 2.3kg" placeholderTextColor="black"></TextInput>
+                    <TextInput style={styles.input} onChangeText={weight => setInfo({...info, weight})} placeholder="몸무게 ex) 2.3 (kg단위)" placeholderTextColor="black"></TextInput>
                 </View>
-                <View style={styles.button}>
+                <View style={styles.button}>                   
                     <View style={styles.center}>
                             <Text>중성화:</Text>
                     </View>
@@ -48,7 +48,7 @@ export default function Page() {
                     <Button title="안했어요" onPress={() => setInfo({...info, neutered:false})} color={info.neutered === false ? ACTIVE : DEACTIVE}></Button>
                 </View>
                 <View style={styles.button}>
-                    <TextInput style={styles.input} onChangeText={feed => setInfo({...info, feed})} placeholder="사료 KG당 칼로리 ex) 110kcal" placeholderTextColor="black"></TextInput>
+                    <TextInput style={styles.input} onChangeText={feed => setInfo({...info, feed})} placeholder="사료 KG당 칼로리 ex) 110 (kcal단위)" placeholderTextColor="black"></TextInput>
                 </View>
                 <View style={styles.button}>
                     <View style={styles.center}>

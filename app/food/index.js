@@ -11,7 +11,7 @@ export default function Page() {
 
     return (
         <View style={styles.main}>
-            <View>
+            <View style={styles.pluscontainer}>
                 <AntDesign name="pluscircleo" size={20} color="black">
                     <Link style={styles.plus} href="/timeset"> 추가</Link>
                 </AntDesign>
@@ -66,6 +66,9 @@ const styles = StyleSheet.create({
     }, 
     time: {
         fontSize: 16
-    },
+    }, 
+    pluscontainer: {
+        marginBottom: 15
+    }
 
 })
