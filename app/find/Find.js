@@ -5,8 +5,8 @@ import {Link} from 'expo-router'
 const FindD = ({devices}) => {
     return (
         <View style={styles.submain2}>
-            {devices.map(devices => (
-                <View style={styles.feederbox}>
+            {devices.map((devices, i) => (
+                <View key={i} style={styles.feederbox}>
                     <Link style={styles.feedername} href="/main">{devices.text}</Link>
                     <Text>급식기ID: {devices.id}</Text>
                 </View>

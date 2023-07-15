@@ -1,47 +1,51 @@
-import { StyleSheet, Text, View, Switch,TextInput } from "react-native";
+import { StyleSheet, Text, View, Switch,TextInput, Button } from "react-native";
 import React, {useState} from 'react';
 import {Link} from 'expo-router'
 
 export default function Page() {
-    const [day, setday] = useState({
+    const [day, setday] = useState({ //각 요일별로 onpress 되었을때 색 변경, 값 변경하기
         mon:false,
         tue:false,
         wed:false,
         thu:false,
-        fir:false,
+        fri:false,
         sat:false,
         sun:false,
+        time:0,
+        minute:0,
+        food:0
     });
-    const [isEnabled, setIsEnabled] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(false); 
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
-    
+    console.log(day)
+    const sug = 150;
 
     return (
         <View style={styles.main}>
             <View style={styles.week1}>
-                <View style={styles.circle}>
-                    <Text style={styles.font}>월</Text>
+                <View style={day.mon ? styles.circleclick : styles.circle}> 
+                    <Button title="월" style={styles.font} color='black' onPress={() => setday({...day, mon:!day.mon})}></Button>
                 </View>
-                <View style={styles.circle}>
-                    <Text style={styles.font}>화</Text>
+                <View style={day.tue ? styles.circleclick : styles.circle}>
+                    <Button title="화" style={styles.font} color='black' onPress={() => setday({...day, tue:!day.tue})}></Button>
                 </View>
-                <View style={styles.circle}>
-                    <Text style={styles.font}>수</Text>
+                <View style={day.wed ? styles.circleclick : styles.circle}>
+                    <Button title="수" style={styles.font} color='black' onPress={() => setday({...day, wed:!day.wed})}></Button>
                 </View>
-                <View style={styles.circle}>
-                    <Text style={styles.font}>목</Text>
+                <View style={day.thu ? styles.circleclick : styles.circle}>
+                    <Button title="목" style={styles.font} color='black' onPress={() => setday({...day, thu:!day.thu})}></Button>
                 </View>
             </View>
             <View style={styles.week2}>
-                <View style={styles.circle}>
-                    <Text style={styles.font}>금</Text>
+                <View style={day.fri ? styles.circleclick : styles.circle}>
+                    <Button title="금" style={styles.font} color='black' onPress={() => setday({...day, fri:!day.fri})}></Button>
                 </View>
-                <View style={styles.circle}>
-                    <Text style={styles.font}>토</Text>
+                <View style={day.sat ? styles.circleclick : styles.circle}>
+                    <Button title="토" style={styles.font} color='black' onPress={() => setday({...day, sat:!day.sat})}></Button>
                 </View>
-                <View style={styles.circle}>
-                    <Text style={styles.font}>일</Text>
+                <View style={day.sun ? styles.circleclick : styles.circle}>
+                    <Button title="일" style={styles.font} color='black' onPress={() => setday({...day, sun:!day.sun})}></Button>
                 </View>
                 <View style={styles.circle}>
                     <Switch
@@ -54,14 +58,21 @@ export default function Page() {
                 </View>
             </View>
             <View style={styles.container}>  
-                <View style={styles.set}>
-                    <Text style={styles.font}>시간 설정: </Text> 
+                <View>
+                    <View style={styles.set}>
+                        <Text style={styles.font}>시간 설정: </Text><TextInput style={styles.input} onChangeText={time => setday({...day, time})}></TextInput>
+                        <Text> 시  </Text><TextInput style={styles.input} onChangeText={minute => setday({...day, minute})}></TextInput><Text> 분</Text>    
+                    </View>
+                    <Text>ex&#41; 오후 1시 11분에 경우 13시 11분</Text>
                 </View>
                 <View style={styles.set}>
-                    <Text style={styles.font}>추천하는 양: </Text>
+                    <Text style={styles.font}>추천하는 양:  {sug}g</Text>
                 </View>
-                <View style={styles.set}>
-                    <Text style={styles.font}>설정한 배식양: </Text>
+                <View>
+                    <View style={styles.set}>
+                        <Text style={styles.font}>설정한 양: </Text><TextInput style={styles.input} onChangeText={food => setday({...day, food})}></TextInput><Text> g</Text>
+                    </View>
+                    <Text>ex&#41; g단위로 적어주세요(숫자만 입력!)</Text>
                 </View>
             </View> 
         </View>
@@ -86,7 +97,9 @@ const styles = StyleSheet.create({
         height: 50,
         backgroundColor: 'white',
         justifyContent: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: 5,
+        marginBottom: 5,
     },
     container: {
         marginTop: 70,
@@ -96,6 +109,33 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     }, 
     font: {
+        fontSize: 16,
+    }, 
+    input: {
+        width: 50,
+        borderWidth: 1,
+        borderRadius: 5,
+        justifyContent: 'center',
+        textAlign: 'center'
+    },    
+    circleclick: {
+        width: 50,
+        height: 50,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        textAlign: 'center',
+        marginTop: 5,
+        marginBottom: 5,
+        borderWidth: 1,
+        borderRadius: 100
+    },
+    con: {
+        width: 300,
         fontSize: 16
+    },
+    set: {
+        display: 'flex',
+        flexDirection: 'row',
+        marginBottom: 5
     }
 })
