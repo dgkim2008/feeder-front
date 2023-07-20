@@ -16,11 +16,12 @@
     }
     User ||--o| Food : contain
     Food {
-        string switch
+        string repeat
     }
     Food ||--o| Timeset : click
     Timeset {
        string[] day
+       string repeat
        int time
        int minute
        int food
