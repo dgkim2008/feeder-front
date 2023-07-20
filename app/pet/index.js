@@ -94,5 +94,8 @@ const styles = StyleSheet.create({
     select: {
         color: 'red',
         fontWeight: 'bold'
+    },
+    input: {
+        width: 300
     }
 })
