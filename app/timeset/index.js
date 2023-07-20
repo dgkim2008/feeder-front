@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, Switch,TextInput, Button } from "react-native";
 import React, {useState} from 'react';
 import {Link} from 'expo-router'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view' 
 
 export default function Page() {
-    const [day, setday] = useState({ //각 요일별로 onpress 되었을때 색 변경, 값 변경하기
+    const [day, setday] = useState({
         mon:false,
         tue:false,
         wed:false,
@@ -17,12 +18,10 @@ export default function Page() {
     });
     const [isEnabled, setIsEnabled] = useState(false); 
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
-    console.log(day)
     const sug = 150;
 
     return (
-        <View style={styles.main}>
+        <KeyboardAwareScrollView style={styles.main}>
             <View style={styles.week1}>
                 <View style={day.mon ? styles.circleclick : styles.circle}> 
                     <Button title="월" style={styles.font} color='black' onPress={() => setday({...day, mon:!day.mon})}></Button>
@@ -75,7 +74,7 @@ export default function Page() {
                     <Text>ex&#41; g단위로 적어주세요(숫자만 입력!)</Text>
                 </View>
             </View> 
-        </View>
+        </KeyboardAwareScrollView>
     );
 }
 const styles = StyleSheet.create({

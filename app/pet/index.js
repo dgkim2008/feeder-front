@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, Button ,TextInput, ScrollView} from "react-native";                                    
+import { StyleSheet, Text, View, Button ,TextInput, ScrollView} from "react-native";     
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'                               
 import React, {useState} from 'react';
 
 export default function Page() {
@@ -15,7 +16,7 @@ export default function Page() {
     const ACTIVE = "red";
     const DEACTIVE = "blue";
     return (
-        <ScrollView>
+        <KeyboardAwareScrollView>
             <View style={styles.main}>
                 <View style={styles.button}>
                     <View style={styles.center}>
@@ -59,7 +60,7 @@ export default function Page() {
                     <Button title="저체중" onPress={() => setInfo({...info, obesity:1})} color={info.obesity === 1 ? ACTIVE : DEACTIVE}></Button>
                 </View>
             </View>
-        </ScrollView>
+        </KeyboardAwareScrollView>
     );
 }
 const styles = StyleSheet.create({

@@ -1,11 +1,11 @@
 ```mermaid
   erDiagram
     User {
-        string feederid 
+        string feederid FK
     }
     User ||--o| PET : contain
     PET {
-        string type
+        string type FK
         string name
         float birth
         string gender
@@ -16,14 +16,14 @@
     }
     User ||--o| Food : contain
     Food {
-        string repeat
+        string repeat FK
     }
-    Food ||--o| Timeset : click
+    Food ||--o| Timeset : in
     Timeset {
-       string[] day
+       string[] day 
        string repeat
        int time
        int minute
-       int food
+       int food FK
     }
 ```
