@@ -9,6 +9,19 @@ export default function Page() {
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
 
+    const [data] = useState ([
+        {
+            time: '시간 설정',
+            day: '요일',
+            amount: '양',
+        },
+        {
+            time: '12:00',
+            day: '금요일',
+            amount: '100g',
+        }
+    ])
+
     return (
         <View style={styles.main}>
             <View style={styles.pluscontainer}>
@@ -18,8 +31,8 @@ export default function Page() {
             </View>
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.time}>시간 설정</Text>
-                    <Text>요일/양</Text>
+                    <Link style={styles.time} href="/timeset">{data[0].time}</Link>
+                    <Text>{data[0].day} / {data[0].amount}</Text>
                 </View>
                 <View>
                     <Switch
@@ -33,8 +46,8 @@ export default function Page() {
             </View>
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.time}>12: 00</Text>
-                    <Text>금요일/ 100g</Text>
+                    <Link style={styles.time} href="/timeset">{data[1].time}</Link>
+                    <Text>{data[1].day} / {data[1].amount}</Text>
                 </View>
                 <View>
                     <Switch

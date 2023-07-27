@@ -1,11 +1,12 @@
 ```mermaid
   erDiagram
-    User {
+    Feed {
+        string userid PK
         string feederid FK
     }
-    User ||--o| PET : contain
-    PET {
-        string type FK
+    Feed ||--|| Pet : contain
+    Pet {
+        string species FK
         string name
         float birth
         string gender
@@ -14,16 +15,18 @@
         string calorie
         string weightchoice
     }
-    User ||--o| Food : contain
+    Feed ||--o{ Food : contain
     Food {
         string repeat FK
     }
-    Food ||--o| Timeset : in
+    Food ||--|| Timeset : in
+    Pet ||--|| Timeset : in
     Timeset {
        string[] day 
        string repeat
        int time
        int minute
        int food FK
+       int recommend PK
     }
 ```
