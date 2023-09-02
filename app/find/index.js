@@ -1,11 +1,24 @@
 import { StyleSheet, Text, View } from "react-native";
-import { AntDesign } from '@expo/vector-icons'; 
+//import { AntDesign } from '@expo/vector-icons'; 
 import React, {useState} from 'react';
 import FindD from "./Find";
+import { initDatabaseConfig, queryDB } from "autofeeder-front/lib/db.js"; 
+import { useEffect } from "react";
 
 export default function Page() {
-    let bluetooth = true;
+   const DBInstance = initDatabaseConfig();
+    useEffect(() => {
+      queryDB(`create table if not exists feed
+        (
+          userId INTEGER PRIMARY KEY AUTOINCREMENT,
+          feederId TEXT
+        )`, DBInstance)
+        queryDB("insert into feed(feederId) values('멍냥급식기1')", DBInstance)
+        queryDB("select * from feed", DBInstance).then(v => console.log(v.rows));
+    }, []);
+    
 
+    let bluetooth = true;
     const [devices] = useState ([
         {
             id: 1,
@@ -21,7 +34,6 @@ export default function Page() {
         }
     ])
     
-
     return (
         <View style={styles.main}>
             <View style={styles.submain1}>

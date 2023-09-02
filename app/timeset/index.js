@@ -1,9 +1,25 @@
 import { StyleSheet, Text, View, Switch,TextInput, Button } from "react-native";
 import React, {useState} from 'react';
-import {Link} from 'expo-router'
+//import {Link} from 'expo-router'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view' 
+import { initDatabaseConfig, queryDB } from "autofeeder-front/lib/db.js"; 
+import { useEffect } from "react";
 
 export default function Page() {
+    const DBInstance = initDatabaseConfig();
+    useEffect(() => {
+    queryDB(`create table if not exists timeset
+        (
+        food INTEGER PRIMARY KEY,
+        repeat TEXT,
+        time INTEGER,
+        minute INTEGER,
+        recommend INTEGER
+        )`, DBInstance)
+        queryDB(`insert into timeset values('100', '반복', '8', '30', '100')`, DBInstance);
+        queryDB("select * from timeset", DBInstance).then(v => console.log(v.rows));
+    }, []);
+
     const [day, setday] = useState({
         mon:false,
         tue:false,

@@ -1,8 +1,29 @@
 import { StyleSheet, Text, View, Button ,TextInput, ScrollView} from "react-native";     
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'                               
 import React, {useState} from 'react';
+import { initDatabaseConfig, queryDB } from "autofeeder-front/lib/db.js"; 
+import { useEffect } from "react";
 
 export default function Page() {
+    const DBInstance = initDatabaseConfig();
+        useEffect(() => {
+        queryDB(`create table if not exists pet
+            (
+            species INTEGER PRIMARY KEY,
+            name TEXT,
+            birth TEXT,
+            gender TEXT,
+            weight INTEGER, 
+            neutered INTEGER, 
+            calorie INTEGER, 
+            weightchoice INTEGER
+            )`, DBInstance)
+            queryDB(`insert into pet values('1', '톰', '11월16일', '남', '1.5', '1', '100', '100')`, DBInstance);
+            //queryDB("insert into pet(name) values('이름작성1')", DBInstance);
+            queryDB("select * from pet", DBInstance).then(v => console.log(v.rows));
+        }, []);
+        
+    
     const [info, setInfo] = useState({
         type:"cat",
         name:"",
