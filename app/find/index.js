@@ -13,7 +13,7 @@ export default function Page() {
           userId INTEGER PRIMARY KEY AUTOINCREMENT,
           feederId TEXT
         )`, DBInstance)
-        queryDB("insert into feed(feederId) values('멍냥급식기1')", DBInstance)
+        //queryDB("insert into feed(feederId) values('멍냥급식기1')", DBInstance)
         queryDB("select * from feed", DBInstance).then(v => console.log(v.rows));
     }, []);
     

@@ -10,13 +10,14 @@ export default function Page() {
     useEffect(() => {
     queryDB(`create table if not exists timeset
         (
-        food INTEGER PRIMARY KEY,
+        timesetId INTEGER PRIMARY KEY AUTOINCREMENT,
+        food INTEGER,
         repeat TEXT,
         time INTEGER,
         minute INTEGER,
         recommend INTEGER
         )`, DBInstance)
-        queryDB(`insert into timeset values('100', '반복', '8', '30', '100')`, DBInstance);
+        //queryDB(`insert into timeset(food, repeat, time, minute, recommend) values(100, '반복', 8, 30, 1)`, DBInstance);
         queryDB("select * from timeset", DBInstance).then(v => console.log(v.rows));
     }, []);
 

@@ -6,10 +6,10 @@ import { useEffect } from "react";
 
 export default function Page() {
     const DBInstance = initDatabaseConfig();
-        useEffect(() => {
-        queryDB(`create table if not exists pet
+        useEffect(() =>  { 
+            queryDB(`create table if not exists petas
             (
-            species INTEGER PRIMARY KEY,
+            species INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             birth TEXT,
             gender TEXT,
@@ -18,9 +18,8 @@ export default function Page() {
             calorie INTEGER, 
             weightchoice INTEGER
             )`, DBInstance)
-            queryDB(`insert into pet values('1', '톰', '11월16일', '남', '1.5', '1', '100', '100')`, DBInstance);
-            //queryDB("insert into pet(name) values('이름작성1')", DBInstance);
-            queryDB("select * from pet", DBInstance).then(v => console.log(v.rows));
+            //queryDB("insert into petas( name, birth, gender, weight, neutered, calorie, weightchoice) values('톰','2020-11-16','남',5,0,100,100)", DBInstance);
+            queryDB("select * from  petas", DBInstance).then(v => console.log(v.rows));
         }, []);
         
     
