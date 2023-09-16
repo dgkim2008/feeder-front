@@ -3,41 +3,75 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import React, {useState} from 'react';
 import { initDatabaseConfig, queryDB } from "autofeeder-front/lib/db.js"; 
 import { useEffect } from "react";
-
 export default function Page() {
     const DBInstance = initDatabaseConfig();
-        useEffect(() =>  { 
-            queryDB(`create table if not exists petas
-            (
-            species INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            birth TEXT,
-            gender TEXT,
-            weight INTEGER, 
-            neutered INTEGER, 
-            calorie INTEGER, 
-            weightchoice INTEGER
-            )`, DBInstance)
-            //queryDB("insert into petas( name, birth, gender, weight, neutered, calorie, weightchoice) values('톰','2020-11-16','남',5,0,100,100)", DBInstance);
-            queryDB("select * from  petas", DBInstance).then(v => console.log(v.rows));
-        }, []);
-        
-    
     const [info, setInfo] = useState({
         type:"cat",
         name:"",
         date:"",
         gen:"M",
         weight:"",
-        neutered:true,
+        neutered:0,
         feed:"",
         obesity:-1,
     });
+    const [loading, setLoading] = useState(false);
     const ACTIVE = "red";
     const DEACTIVE = "blue";
+    let check
+    
+    useEffect(() => {
+        const initFun = async () => {
+            await queryDB(`create table if not exists petas
+            (
+            petasId INTEGER PRIMARY KEY AUTOINCREMENT,
+            species TEXT,
+            name TEXT,
+            birth TEXT,
+            gender TEXT, 
+            weight TEXT, 
+            neutered INTEGER, 
+            calorie TEXT, 
+            weightchoice INTEGER
+            )`, DBInstance);
+            let pet_data = await queryDB(`select * from petas`, DBInstance);
+            
+            //console.log(pet_data.rows['_array'][0])
+            if(pet_data.rows['_array'][0] == undefined) {
+                check = false
+            } else {
+                check = true
+                info.type = pet_data.rows['_array'][0].species;
+                info.name = pet_data.rows['_array'][0].name;
+                info.date = pet_data.rows['_array'][0].birth;
+                info.gen = pet_data.rows['_array'][0].gender; // M과 F
+                info.weight = `${pet_data.rows['_array'][0].weight}`;
+                info.neutered = pet_data.rows['_array'][0].neutered;
+                info.feed = `${pet_data.rows['_array'][0].calorie}`;
+                info.obesity = pet_data.rows['_array'][0].weightchoice;
+            }
+            
+            setLoading(true)
+        };
+        initFun();
+    }, [])
     return (
         <KeyboardAwareScrollView>
             <View style={styles.main}>
+                <View style={styles.save}> 
+                    <Button title="값 저장하기" onPress={() => {
+                        if(check === false) {
+                            queryDB(`insert into petas(species,name,birth,gender,weight,neutered,calorie,weightchoice) 
+                            values('${info.type}','${info.name}','${info.date}','${info.gen}','${info.weight}','${info.neutered}','${info.feed}','${info.obesity}')`, DBInstance);
+                            queryDB("select * from petas", DBInstance).then(v => console.log(v.rows));
+                        } else {
+                            queryDB(`update petas set species = '${info.type}', name = '${info.name}', birth = '${info.date}',
+                            gender = '${info.gen}', weight = '${info.weight}', neutered = '${info.neutered}', calorie = '${info.feed}', weightchoice = '${info.obesity}'
+                            where petasId = 1`, DBInstance);
+                            queryDB("select * from petas", DBInstance).then(v => console.log(v.rows));
+                        }
+                    }}></Button>
+                </View>
                 <View style={styles.button}>
                     <View style={styles.center}>
                         <Text>반려동물:</Text>
@@ -46,10 +80,10 @@ export default function Page() {
                     <Button title="강아지" onPress={() => setInfo({...info, type:"dog"})} color={info.type === "dog" ? ACTIVE : DEACTIVE}></Button>
                 </View>
                 <View style={styles.button}>
-                    <TextInput style={styles.input} onChangeText={name => setInfo({...info, name})} placeholder="반려동물의 이름을 입력해주세요" placeholderTextColor="black"></TextInput>
+                    <TextInput style={styles.input} onChangeText={name => setInfo({...info, name})} placeholder={info.name === '' ? "반려동물의 이름을 입력해주세요" : info.name} placeholderTextColor="black"></TextInput>
                 </View>
                 <View style={styles.button}>
-                    <TextInput style={styles.input} onChangeText={date => setInfo({...info, date})} placeholder="생년월일 ex) 2023-01-01" placeholderTextColor="black"></TextInput>
+                    <TextInput style={styles.input} onChangeText={date => setInfo({...info, date})} placeholder={info.date === '' ? "생년월일 ex) 2023-01-01" : info.date} placeholderTextColor="black"></TextInput>
                 </View>
                 <View style={styles.button}>
                     <View style={styles.center}>
@@ -59,17 +93,17 @@ export default function Page() {
                     <Button title="여아" onPress={() => setInfo({...info, gen:"F"})} color={info.gen === 'F' ? ACTIVE : DEACTIVE}></Button>
                     </View>
                 <View style={styles.box}>
-                    <TextInput style={styles.input} onChangeText={weight => setInfo({...info, weight})} placeholder="몸무게 ex) 2.3 (kg단위)" placeholderTextColor="black"></TextInput>
+                    <TextInput style={styles.input} onChangeText={weight => setInfo({...info, weight})} placeholder={info.weight === '' ? "몸무게 ex) 2.3 (kg단위)" : info.weight} placeholderTextColor="black"></TextInput>
                 </View>
                 <View style={styles.button}>                   
                     <View style={styles.center}>
                             <Text>중성화:</Text>
                     </View>
-                    <Button title="했어요" onPress={() => setInfo({...info, neutered:true})} color={info.neutered === true ? ACTIVE : DEACTIVE}></Button>
-                    <Button title="안했어요" onPress={() => setInfo({...info, neutered:false})} color={info.neutered === false ? ACTIVE : DEACTIVE}></Button>
+                    <Button title="했어요" onPress={() => setInfo({...info, neutered:0})} color={info.neutered === 0 ? ACTIVE : DEACTIVE}></Button>
+                    <Button title="안했어요" onPress={() => setInfo({...info, neutered:1})} color={info.neutered === 1 ? ACTIVE : DEACTIVE}></Button>
                 </View>
                 <View style={styles.button}>
-                    <TextInput style={styles.input} onChangeText={feed => setInfo({...info, feed})} placeholder="사료 KG당 칼로리 ex) 110 (kcal단위)" placeholderTextColor="black"></TextInput>
+                    <TextInput style={styles.input} onChangeText={feed => setInfo({...info, feed})} placeholder={info.feed === '' ? "사료 KG당 칼로리 ex) 110 (kcal단위)" : info.feed} placeholderTextColor="black"></TextInput>
                 </View>
                 <View style={styles.button}>
                     <View style={styles.center}>
@@ -118,5 +152,9 @@ const styles = StyleSheet.create({
     },
     input: {
         width: 300
+    }, 
+    save: {
+        flex: 1,
+        marginRight: 30,
     }
 })

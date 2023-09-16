@@ -13,8 +13,8 @@ export default function Page() {
           userId INTEGER PRIMARY KEY AUTOINCREMENT,
           feederId TEXT
         )`, DBInstance)
-        //queryDB("insert into feed(feederId) values('멍냥급식기1')", DBInstance)
-        queryDB("select * from feed", DBInstance).then(v => console.log(v.rows));
+        //queryDB(`insert into feed(feederId) values('${devices.text}')`, DBInstance)
+        //queryDB("select * from feed", DBInstance).then(v => console.log(v.rows));
     }, []);
     
 
@@ -24,7 +24,7 @@ export default function Page() {
             id: 1,
             text: "멍냥 급식기"
         },
-        {
+        /*{
             id: 2,
             text: "cctv"
         },
@@ -32,6 +32,7 @@ export default function Page() {
             id: 3,
             text: '안녕'
         }
+        */
     ])
     
     return (
