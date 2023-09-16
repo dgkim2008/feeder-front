@@ -7,7 +7,7 @@ export default function Layout() {
     return <View style={styles.container}>
         <View style={styles.back}>
         { 
-            (path !== '/' && path !== '/main') && 
+            (path !== '/' && path !== '/main' && path !== '/timeset') && 
             <AntDesign name="arrowright" size={16} color="black">
                 <Link href={"/main"} style={styles.backtext}>BACK</Link>
             </AntDesign>

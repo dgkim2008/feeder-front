@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Switch,TextInput, Button } from "react-native";
 import React, {useState} from 'react';
-//import {Link} from 'expo-router'
+import {Link} from 'expo-router'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view' 
 import { initDatabaseConfig, queryDB } from "autofeeder-front/lib/db.js"; 
 import { useEffect } from "react";
@@ -72,7 +72,7 @@ export default function Page() {
                 }
                 
                 DER = RER * constant
-                SUG = Math.ceil(DER / pet_calorie * 1000)
+                SUG = Math.ceil(DER / pet_calorie * 1000) // 추천하는 배식량
                 console.log(DER, SUG)
             }
             initFun();
@@ -82,7 +82,7 @@ export default function Page() {
     const today = new Date()
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
-    const date = today.getDate(); 
+    //const date = today.getDate(); 
 
     let RER = 0;
     let constant = 0;
@@ -110,12 +110,12 @@ export default function Page() {
     return (
         <KeyboardAwareScrollView style={styles.main}>
             <View>
-                <Button style={styles.save} title="값 저장하기" onPress={() => {
+                <Link style={styles.save} href='/food' onPress={() => {
                     queryDB(`insert into timeset(food, repeat, time, minute, recommend, mon, tue, wed, thu, fri, sat, sun) 
                     values('${day.food}', '${isEnabled}', '${day.time}', '${day.minute}', '${day.sug}', '${day.mon}', '${day.tue}' , '${day.wed}' , '${day.thu}'
                     , '${day.fri}' , '${day.sat}', '${day.sun}')`, DBInstance);
                     queryDB("select * from timeset", DBInstance).then(v => console.log(v.rows));
-                }}></Button>
+                }}>값 저장하기</Link>
             </View>
             <View style={styles.week1}>
                 <View style={day.mon ? styles.circleclick : styles.circle}> 
@@ -231,5 +231,10 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         marginBottom: 5
+    }, 
+    save: {
+        textAlign: 'center',
+        fontSize: 20,
+        color: 'red'
     }
 })

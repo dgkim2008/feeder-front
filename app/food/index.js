@@ -1,14 +1,10 @@
-import { StyleSheet, Text, View, Switch} from "react-native";
+import { StyleSheet, Text, View, Switch, Button} from "react-native";
 import React, {useState} from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import {Link} from 'expo-router'
+import ConD from "./Cont";
 
 export default function Page() {
-    const [isEnabled, setIsEnabled] = useState(false);
-    const [isEnabled2, setIsEnabled2] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-    const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
-
     const [data] = useState ([
         {
             time: '시간 설정',
@@ -26,39 +22,10 @@ export default function Page() {
         <View style={styles.main}>
             <View style={styles.pluscontainer}>
                 <AntDesign name="pluscircleo" size={20} color="black">
-                    <Link style={styles.plus} href="/timeset"> 추가</Link>
+                    <Text style={styles.plus}> 추가</Text>
                 </AntDesign>
             </View>
-            <View style={styles.container}>
-                <View>
-                    <Link style={styles.time} href="/timeset">{data[0].time}</Link>
-                    <Text>{data[0].day} / {data[0].amount}</Text>
-                </View>
-                <View>
-                    <Switch
-                    trackColor={{false: '#767577', true: '#81c147'}}
-                    thumbColor={'white'}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                    />
-                </View>
-            </View>
-            <View style={styles.container}>
-                <View>
-                    <Link style={styles.time} href="/timeset">{data[1].time}</Link>
-                    <Text>{data[1].day} / {data[1].amount}</Text>
-                </View>
-                <View>
-                    <Switch
-                    trackColor={{false: '#767577', true: '#81c147'}}
-                    thumbColor={'white'}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch2}
-                    value={isEnabled2}
-                    />
-                </View>
-            </View>
+            <ConD data={data}></ConD>
         </View>
     );
 }
@@ -68,7 +35,8 @@ const styles = StyleSheet.create({
         marginRight: 20,
     },
     plus: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 20
     },
     container: {
         height: 50,
@@ -82,6 +50,12 @@ const styles = StyleSheet.create({
     }, 
     pluscontainer: {
         marginBottom: 15
+    },
+    delcon: {
+        justifyContent: 'center'
+    },
+    del: {
+        color: 'red',
+        fontSize: 15
     }
-
 })

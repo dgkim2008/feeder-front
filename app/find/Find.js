@@ -14,8 +14,6 @@ const FindD = ({devices}) => {
     )
 
 }
-
-
 const styles = StyleSheet.create({
     submain2: {
         height:150,
