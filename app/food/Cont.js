@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import {Link} from 'expo-router'
 
-const Con = ({data}) => {
+const Con = ({data, onRemove}) => {
     return (
         <View>
             {data.map((data, i) => (

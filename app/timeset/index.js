@@ -29,7 +29,6 @@ export default function Page() {
                 setLoading(true)
                 const pet_data =  await queryDB(`select * from petas`, DBInstance)
                 //console.log(pet_data.rows['_array'][0].birth) //아래 database 접근 방법
-
                 const pet_species = pet_data.rows['_array'][0].species;
                 const pet_birth = pet_data.rows['_array'][0].birth;
                 const pet_weight = pet_data.rows['_array'][0].weight;

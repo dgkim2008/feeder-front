@@ -61,10 +61,12 @@ export default function Page() {
                 <View style={styles.save}> 
                     <Button title="값 저장하기" onPress={() => {
                         if(check === false) {
+                            console.log('값 insert')
                             queryDB(`insert into petas(species,name,birth,gender,weight,neutered,calorie,weightchoice) 
                             values('${info.type}','${info.name}','${info.date}','${info.gen}','${info.weight}','${info.neutered}','${info.feed}','${info.obesity}')`, DBInstance);
                             queryDB("select * from petas", DBInstance).then(v => console.log(v.rows));
                         } else {
+                            console.log('값 update')
                             queryDB(`update petas set species = '${info.type}', name = '${info.name}', birth = '${info.date}',
                             gender = '${info.gen}', weight = '${info.weight}', neutered = '${info.neutered}', calorie = '${info.feed}', weightchoice = '${info.obesity}'
                             where petasId = 1`, DBInstance);
