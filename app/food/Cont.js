@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import {Link} from 'expo-router'
+import { initDatabaseConfig, queryDB } from "autofeeder-front/lib/db.js"; 
 
 const Con = ({data, onRemove}) => {
     return (
@@ -11,7 +12,7 @@ const Con = ({data, onRemove}) => {
                         <Text>{data.time} / {data.min}</Text>
                     </View>
                     <View style={styles.delcon}>
-                        <Text style={styles.del}>삭제</Text>
+                        <Button style={styles.del} title="삭제" onPress={() => onRemove(data)}></Button>
                     </View>
                 </View>
             ))}

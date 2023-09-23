@@ -11,23 +11,35 @@ import { useEffect } from "react";
 export default function Page() {
     const DBInstance = initDatabaseConfig();
     const [loading, setLoading] = useState(false);
+    const initFun = async () => {
+        let timeset_data = await queryDB(`select * from timeset`, DBInstance);
+        let num = timeset_data.rows['_array'].length;
+        let arr = []
+        const tempData = []
+        for(let i = 0; i < num; i++) {
+            arr = timeset_data.rows['_array']
+            tempData.push({id: arr[i].timesetId, time: arr[i].time, min: arr[i].minute, amount: arr[i].food})
+        }
+        setData(tempData);
+        setLoading(true)
+    };
     useEffect(() => {
-        const initFun = async () => {
-            let timeset_data = await queryDB(`select * from timeset`, DBInstance);
-            let num = timeset_data.rows['_array'].length;
-            let arr = []
-
-            for(let i = 0; i < num; i++) {
-                arr = timeset_data.rows['_array']
-                data.push({id: arr[i].timesetId, time: arr[i].time, min: arr[i].minute, amount: arr[i].food})
-            }
-            setLoading(true)
-        };
         initFun();
     }, [])
-    const [data] = useState ([
-    ])
+    const [data, setData] = useState([])
 
+    const [del, setDel] = useState(null);
+
+    useEffect(() => {
+        if(!del || !loading)return
+        const delSomething = async () => {
+            setLoading(false);
+            await queryDB(`delete from timeset where timesetId = ${del.id}`, DBInstance)
+            setDel(null);
+            await initFun();
+        }
+        delSomething()
+    }, [del])
     return (
         <KeyboardAwareScrollView>
             <View style={styles.main}>
@@ -36,7 +48,7 @@ export default function Page() {
                         <Link style={styles.plus} href="/timeset"> 추가</Link>
                     </AntDesign>
                 </View>
-                <ConD data={data}></ConD>
+                <ConD data={data} onRemove={(data) => setDel(data)}></ConD>
             </View>
         </KeyboardAwareScrollView>
     );
