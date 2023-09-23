@@ -7,8 +7,8 @@ const Con = ({data, onRemove}) => {
             {data.map((data, i) => (
                 <View key={i} style={styles.container}>
                     <View>
-                        <Link style={styles.time} href="/timeset">{data.time}</Link>
-                        <Text>{data.day} / {data.amount}</Text>
+                        <Link style={styles.time} href="/timeset">{data.amount}</Link>
+                        <Text>{data.time} / {data.min}</Text>
                     </View>
                     <View style={styles.delcon}>
                         <Text style={styles.del}>삭제</Text>

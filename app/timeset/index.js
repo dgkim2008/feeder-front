@@ -72,7 +72,8 @@ export default function Page() {
                 
                 DER = RER * constant
                 SUG = Math.ceil(DER / pet_calorie * 1000) // 추천하는 배식량
-                console.log(DER, SUG)
+                console.log(`추천 칼로리 양: ${DER}  추천하는 양: ${SUG}`)
+                day.sug = SUG;
             }
             initFun();
         }, [])
