@@ -8,8 +8,8 @@ const Con = ({data, onRemove}) => {
             {data.map((data, i) => (
                 <View key={i} style={styles.container}>
                     <View>
-                        <Link style={styles.time} href="/timeset">{data.amount}</Link>
-                        <Text>{data.time} / {data.min}</Text>
+                        <Link style={styles.time} href="/timeset">배식량: {data.amount}g</Link>
+                        <Text>{data.time}시 {data.min}분</Text>
                     </View>
                     <View style={styles.delcon}>
                         <Button style ={styles.save} title="삭제" onPress={() => onRemove(data)}></Button>
