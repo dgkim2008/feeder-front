@@ -12,7 +12,7 @@ const Con = ({data, onRemove}) => {
                         <Text>{data.time} / {data.min}</Text>
                     </View>
                     <View style={styles.delcon}>
-                        <Button style={styles.del} title="삭제" onPress={() => onRemove(data)}></Button>
+                        <Button style ={styles.save} title="삭제" onPress={() => onRemove(data)}></Button>
                     </View>
                 </View>
             ))}
@@ -38,6 +38,10 @@ const styles = StyleSheet.create({
     del: {
         color: 'red',
         fontSize: 15
+    }, 
+    save: {
+        textAlign: 'center',
+        fontSize: 20,
     }
 });
 
