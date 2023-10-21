@@ -41,7 +41,7 @@ export default function Page() {
                 const pet_birth_date = `${pet_birth}`.slice(8,10)
     
                 if(pet_species === 'dog') {
-                    RER = pet_weight * 30 + 70
+                    RER =    pet_weight * 30 + 70
                     if(year === pet_birth_year && month - pet_birth_month < 4) {
                         constant = 3;
                     } else {
@@ -106,6 +106,7 @@ export default function Page() {
     });
     const [isEnabled, setIsEnabled] = useState(false); 
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
 
     return (
         <KeyboardAwareScrollView style={styles.main}>
