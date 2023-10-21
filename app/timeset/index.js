@@ -40,7 +40,7 @@ export default function Page() {
                 const pet_birth_year = `${pet_birth}`.slice(0,4)
                 const pet_birth_month = `${pet_birth}`.slice(5,7)
                 const pet_birth_date = `${pet_birth}`.slice(8,10)
-    
+                    
                 if(pet_species === 'dog') {
                     RER =    pet_weight * 30 + 70
                     if(year === pet_birth_year && month - pet_birth_month < 4) {

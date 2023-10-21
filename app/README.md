@@ -30,4 +30,3 @@
        int recommend PK
     }
 ```
-변경
