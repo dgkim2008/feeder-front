@@ -108,6 +108,7 @@ export default function Page() {
     const [isEnabled, setIsEnabled] = useState(false); 
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+    console.log('bluetooth')
 
     return (
         <KeyboardAwareScrollView style={styles.main}>
