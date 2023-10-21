@@ -35,6 +35,7 @@ export default function Page() {
                 const pet_calorie = pet_data.rows['_array'][0].calorie; //음식 칼로리
                 //const pet_neutered = pet_data.rows['_array'][0].neutered; //중성화 여부 0은 함, 1은 안함
                 const pet_weightchoice = pet_data.rows['_array'][0].weightchoice; // 비만 여부 -1 비만, 0 정상, 1은 저체중
+                //dfdfdlkfjdlk
 
                 const pet_birth_year = `${pet_birth}`.slice(0,4)
                 const pet_birth_month = `${pet_birth}`.slice(5,7)
