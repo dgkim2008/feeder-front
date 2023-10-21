@@ -20,7 +20,7 @@ export default function Page() {
                 recommend INTEGER,
                 mon TEXT,
                 tue TEXT,
-                wed TEXT,
+                wed TEXT, 
                 thu TEXT,
                 fri TEXT,
                 sat TEXT,
