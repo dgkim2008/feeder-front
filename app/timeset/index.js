@@ -91,8 +91,8 @@ export default function Page() {
     let SUG = 0;
     //(`${year}년${month}월${date}일`)
 
-
-    const [day, setday] = useState({
+        
+    const [day, setday] = useState({    
         mon:false,
         tue:false,
         wed:false,

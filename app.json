@@ -6,6 +6,10 @@
     },
     "name": "autofeeder-front",
     "slug": "autofeeder",
+    "android":{
+      "package":"com.dongyu.autofeeder",
+      "versionCode":1
+    },
     "extra": {
       "eas": {
         "projectId": "a0b8a77b-570b-41be-86c2-b76121c96406"
